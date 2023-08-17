@@ -3,31 +3,38 @@ import React from "react";
 import { client } from "../lib/client";
 import { Product, FooterBanner, HeroBanner } from "../components";
 
-const Home = ({ products, bannerData }) => {
-  return (
-    <div>
-      <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
-      <div className="product=heading">
-        <h2>Best selling Products</h2>
-        <p>Speakers of many variations</p>
-      </div>
-      <div className="products-container">
-        {products?.map((product) => product.name)}
-      </div>
-      <FooterBanner />
-    </div>
-  );
-};
-
 export const getServerSideProps = async () => {
   const query = '*[_type == "product"]';
-  const product = await client.fetch(query);
+  const products = await client.fetch(query);
+
   const bannerQuery = '*[_type == "banner"]';
   const bannerData = await client.fetch(bannerQuery);
 
+  const sayHi = "hello world miky";
+
   return {
-    props: { product, bannerData },
+    props: { products, bannerData, sayHi },
   };
+};
+
+const Home = ({ products, bannerData, sayHi }) => {
+  return (
+    <div>
+      <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
+      <div className="products-heading">
+        <h2>Best Seller Products {sayHi}</h2>
+        <p>speaker There are many variations passages</p>
+      </div>
+
+      <div className="products-container">
+        {products?.map((product) => (
+          <Product key={product._id} product={product} />
+        ))}
+      </div>
+
+      <FooterBanner footerBanner={bannerData && bannerData[0]} />
+    </div>
+  );
 };
 
 export default Home;
