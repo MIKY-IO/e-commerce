@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  AiFillInstagram,
-  AiFillLinkedin,
+  AiOutlineInstagram,
+  AiOutlineLinkedin,
   AiOutlineSkype,
   AiOutlineMail,
 } from "react-icons/ai";
@@ -11,8 +11,8 @@ const Footer = () => {
     <div className="footer-container">
       <p>2023 | MIKY.IO | All rights reserverd</p>
       <p className="icons">
-        <AiFillInstagram />
-        <AiFillLinkedin />
+        <AiOutlineInstagram />
+        <AiOutlineLinkedin />
         <AiOutlineSkype />
         <AiOutlineMail />
       </p>
